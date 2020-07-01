@@ -85,26 +85,26 @@ def parse_clusters(network_filepath):
 
 if __name__ == "__main__":
     working_directory = os.getcwd()
-    #  output_directory  = working_directory + "/output"
-    #  generate_config(output_directory,
-                    #  os.getcwd() + "/input_configurations/arctic-species-metadata.tsv",
-                    #  os.getcwd() + "/input_configurations/arctic-species.tsv",
-                    #  0.7, 10000, 0, 2)
+    output_directory  = working_directory + "/output"
+    generate_config(output_directory,
+                    os.getcwd() + "/input_configurations/arctic-species-metadata.tsv",
+                    os.getcwd() + "/input_configurations/arctic-species.tsv",
+                    0.7, 10000, 0, 2)
 
-    #  run_simulator()
+    run_simulator()
 
-    #  alignments_directory = working_directory + "/alignments_output"
-    #  os.mkdir(alignments_directory)
-    #  os.mkdir(alignments_directory + "/reads")
-    #  os.mkdir(alignments_directory + "/overlaps")
-    #  sample_folders = glob.glob(output_directory + "/*_sample_*")
-    #  for sample_folder in sample_folders:
-        #  cat_reads(sample_folder, alignments_directory)
-    #  generate_overlap_alignments(alignments_directory)
+    alignments_directory = working_directory + "/alignments_output"
+    os.mkdir(alignments_directory)
+    os.mkdir(alignments_directory + "/reads")
+    os.mkdir(alignments_directory + "/overlaps")
+    sample_folders = glob.glob(output_directory + "/*_sample_*")
+    for sample_folder in sample_folders:
+        cat_reads(sample_folder, alignments_directory)
+    generate_overlap_alignments(alignments_directory)
 
-    #  with open("docker_volume_folder/network.out", "w") as network:
-        #  for overlap_paf in glob.glob(alignments_directory + "/overlaps/*"):
-            #  paf_to_network(overlap_paf, network)
+    with open("docker_volume_folder/network.out", "w") as network:
+        for overlap_paf in glob.glob(alignments_directory + "/overlaps/*"):
+            paf_to_network(overlap_paf, network)
 
     hipmcl_cluster(working_directory)
     parse_clusters(working_directory + "/docker_volume_folder/network.out.hipmcl")
